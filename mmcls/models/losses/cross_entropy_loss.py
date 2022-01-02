@@ -112,6 +112,7 @@ def binary_cross_entropy(pred,
     if class_weight is not None:
         N = pred.size()[0]
         class_weight = class_weight.repeat(N, 1)
+        
     loss = F.binary_cross_entropy_with_logits(
         pred,
         label,

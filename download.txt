@@ -1,0 +1,4 @@
+# ---------- Dataset ---------- #
+VOC Dataset: 
+    https://pjreddie.com/projects/pascal-voc-dataset-mirror/   [voc数据集镜像地址]
+    https://blog.csdn.net/guojingjuan/article/details/52587739 [voc2007数据集的下载和解压]

@@ -14,7 +14,7 @@ mmclassification
 ├── configs
 ├── docs
 ├── data
-│   ├── imagenet
+│   ├── imagenet  # https://blog.csdn.net/weixin_43216130/article/details/115312600
 │   │   ├── meta
 │   │   ├── train
 │   │   ├── val

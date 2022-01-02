@@ -6,6 +6,9 @@ import os.path as osp
 import time
 import warnings
 
+import sys
+sys.path.append('/home/jack/Projects/openmmlab/mmclassification/mmcls')
+
 import mmcv
 import torch
 from mmcv import Config, DictAction

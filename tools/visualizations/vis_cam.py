@@ -330,7 +330,7 @@ def main():
     # calculate cam grads and show|save the visualization image
     grayscale_cam = cam(
         input_tensor=data['img'].unsqueeze(0),
-        target_category=args.target_category,
+        # target_category=args.target_category,
         eigen_smooth=args.eigen_smooth,
         aug_smooth=args.aug_smooth)
     show_cam_grad(

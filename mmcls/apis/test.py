@@ -25,7 +25,6 @@ def single_gpu_test(model,
     for i, data in enumerate(data_loader):
         with torch.no_grad():
             result = model(return_loss=False, **data)
-
         batch_size = len(result)
         results.extend(result)
 
@@ -196,3 +195,7 @@ def collect_results_gpu(result_part, size):
         # the dataloader may pad some samples
         ordered_results = ordered_results[:size]
         return ordered_results
+
+
+
+    
