@@ -255,6 +255,7 @@ class MobileNetV2(BaseBackbone):
             for param in layer.parameters():
                 param.requires_grad = False
 
+
     def train(self, mode=True):
         super(MobileNetV2, self).train(mode)
         self._freeze_stages()

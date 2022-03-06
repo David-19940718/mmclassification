@@ -17,5 +17,7 @@ class HUST_Vehicle_Color_Dataset(BaseDataset):
                 info = {'img_prefix': self.data_prefix}
                 info['img_info'] = {'filename': filename}
                 info['gt_label'] = np.array(gt_label, dtype=np.int64)
+                print(np.array(gt_label, dtype=np.int64))
+                exit(0)
                 data_infos.append(info)
             return data_infos

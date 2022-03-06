@@ -106,7 +106,9 @@ class StackedLinearClsHead(ClsHead):
                 self.num_classes,
                 dropout_rate=0.,
                 norm_cfg=None,
-                act_cfg=None))
+                act_cfg=None
+            )
+        )
 
     def init_weights(self):
         self.layers.init_weights()

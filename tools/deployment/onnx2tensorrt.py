@@ -4,7 +4,7 @@ import os
 import os.path as osp
 
 import numpy as np
-
+from mmcv.tensorrt import TRTWrapper, onnx2trt, save_trt_engine
 
 def get_GiB(x: int):
     """return x GiB."""
@@ -32,7 +32,6 @@ def onnx2tensorrt(onnx_file,
             Defaults to 1.
     """
     import onnx
-    from mmcv.tensorrt import TRTWraper, onnx2trt, save_trt_engine
 
     onnx_model = onnx.load(onnx_file)
     # create trt engine and wrapper
@@ -72,7 +71,7 @@ def onnx2tensorrt(onnx_file,
         })
 
         # Get results from TensorRT
-        trt_model = TRTWraper(trt_file, input_names, output_names)
+        trt_model = TRTWrapper(trt_file, input_names, output_names)
         with torch.no_grad():
             trt_outputs = trt_model({input_names[0]: input_img_cuda})
         trt_outputs = [
@@ -103,7 +102,7 @@ def parse_args():
         '--shape',
         type=int,
         nargs='+',
-        default=[224, 224],
+        default=[256, 128],
         help='Input size of the model')
     parser.add_argument(
         '--max-batch-size',

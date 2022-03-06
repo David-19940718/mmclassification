@@ -1,6 +1,7 @@
 # Copyright (c) OpenMMLab. All rights reserved.
 from .alexnet import AlexNet
 from .conformer import Conformer
+from .convnext import ConvNeXt
 from .deit import DistilledVisionTransformer
 from .lenet import LeNet5
 from .mlp_mixer import MlpMixer
@@ -24,10 +25,13 @@ from .tnt import TNT
 from .vgg import VGG
 from .vision_transformer import VisionTransformer
 
+from .jz_t40_resnet import T40ResNet
+
 __all__ = [
     'LeNet5', 'AlexNet', 'VGG', 'RegNet', 'ResNet', 'ResNeXt', 'ResNetV1d',
     'ResNeSt', 'ResNet_CIFAR', 'SEResNet', 'SEResNeXt', 'ShuffleNetV1',
     'ShuffleNetV2', 'MobileNetV2', 'MobileNetV3', 'VisionTransformer',
     'SwinTransformer', 'TNT', 'TIMMBackbone', 'T2T_ViT', 'Res2Net', 'RepVGG',
-    'Conformer', 'MlpMixer', 'DistilledVisionTransformer'
+    'Conformer', 'MlpMixer', 'DistilledVisionTransformer', 'ConvNeXt',
+    'T40ResNet',
 ]

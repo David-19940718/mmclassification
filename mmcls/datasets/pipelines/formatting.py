@@ -12,7 +12,6 @@ from ..builder import PIPELINES
 
 def to_tensor(data):
     """Convert objects of various python types to :obj:`torch.Tensor`.
-
     Supported types are: :class:`numpy.ndarray`, :class:`torch.Tensor`,
     :class:`Sequence`, :class:`int` and :class:`float`.
     """
@@ -108,20 +107,16 @@ class ToNumpy(object):
 @PIPELINES.register_module()
 class Collect(object):
     """Collect data from the loader relevant to the specific task.
-
     This is usually the last stage of the data loader pipeline. Typically keys
     is set to some subset of "img" and "gt_label".
-
     Args:
         keys (Sequence[str]): Keys of results to be collected in ``data``.
         meta_keys (Sequence[str], optional): Meta keys to be converted to
             ``mmcv.DataContainer`` and collected in ``data[img_metas]``.
             Default: ('filename', 'ori_shape', 'img_shape', 'flip',
             'flip_direction', 'img_norm_cfg')
-
     Returns:
         dict: The result dict contains the following keys
-
             - keys in ``self.keys``
             - ``img_metas`` if available
     """
@@ -153,10 +148,8 @@ class Collect(object):
 @PIPELINES.register_module()
 class WrapFieldsToLists(object):
     """Wrap fields of the data dictionary into lists for evaluation.
-
     This class can be used as a last step of a test or validation
     pipeline for single image evaluation or inference.
-
     Example:
         >>> test_pipeline = [
         >>>    dict(type='LoadImageFromFile'),

@@ -188,7 +188,7 @@ def parse_args():
         '--shape',
         type=int,
         nargs='+',
-        default=[224, 224],
+        default=[128, 64],
         help='input image size')
     parser.add_argument(
         '--dynamic-export',

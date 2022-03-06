@@ -31,7 +31,6 @@ class MultiLabelClsHead(BaseHead):
         gt_label = gt_label.type_as(cls_score)
         num_samples = len(cls_score)
         losses = dict()
-
         # map difficult examples to positive ones
         _gt_label = torch.abs(gt_label)
         # compute loss

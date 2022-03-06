@@ -96,7 +96,7 @@ def parse_args():
     parser.add_argument(
         '--device',
         choices=['cpu', 'cuda'],
-        default='cuda',
+        default='cuda:0',
         help='device used for testing')
     args = parser.parse_args()
     if 'LOCAL_RANK' not in os.environ:

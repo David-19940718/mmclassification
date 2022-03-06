@@ -20,7 +20,6 @@ dataset_dir folder
 """
 
 
-
 def mkdir(p, is_remove=False):
     """Create a folder
     Args:
@@ -38,6 +37,8 @@ def parse_cls_data(dataset_dir):
     results, class_id = {}, [i for i in range(len(os.listdir(dataset_dir)))]
 
     for root, dirs, _ in os.walk(dataset_dir):
+        dirs.sort()
+        class_id.sort()
         results['num_classes'] = len(dirs)
         results['classes'] = dirs
         results['name2id'] = dict(zip(dirs, class_id))
@@ -67,7 +68,6 @@ def create_symlink(file_list, src_dir, dst_dir, classes):
 
 
 def divide_dataset():
-
     for classes in os.listdir(dataset_dir):
         logger.info(f"Current processing class is [{classes}]")
         current_dirs = os.path.join(dataset_dir, classes)
@@ -77,7 +77,6 @@ def divide_dataset():
         create_symlink(train_list, current_dirs, train_dir, classes)
         create_symlink(val_list, current_dirs, val_dir, classes)
 
-
 def create_txt(results):
     mkdir(meta_dir, is_remove=True)
     for mode in ('train', 'val'):
@@ -86,14 +85,13 @@ def create_txt(results):
                 total_dir = train_dir
             elif mode == 'val':
                 total_dir = val_dir
-
             for classes in os.listdir(total_dir):
                 for filename in os.listdir(os.path.join(total_dir, classes)):
                     current_id = results['name2id'][classes]
                     item = f'{classes}/{filename} {current_id}'
                     f.write(item + "\n")
     
-    with open(os.path.join(meta_dir, 'class_info.txt'), 'w') as f:
+    with open(os.path.join(meta_dir, 'class_info.json'), 'w') as f:
         json.dump(results, f) 
 
 
@@ -103,12 +101,12 @@ def main():
 
 
 if __name__ == '__main__':
-    root_dir = '/home/jack/Projects/openmmlab/mmclassification/data/HUST_Vehicle_Color'
+    root_dir = '/home/jack/Projects/openmmlab/mmclassification/data/0210_bit_vehicle_color_dataset'
     meta_dir = os.path.join(root_dir, 'meta')
     train_dir = os.path.join(root_dir, 'train')
     val_dir = os.path.join(root_dir, 'val')
 
-    dataset_dir = '/data/workspace_jack/vehicle_attribute_dataset/source/HUST_Vehicle_Color/dataset'
+    dataset_dir = '/data/workspace_jack/vehicle_attribute_dataset/source/PKU_VD_Brand_Color/datasets/0208_vehicle_attr_dataset/colors'
 
     split_ratio = 0.8  # train: val
 

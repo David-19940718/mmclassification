@@ -24,6 +24,7 @@ def average_performance(pred, target, thr=None, k=None):
     Returns:
         tuple: (CP, CR, CF1, OP, OR, OF1)
     """
+
     if isinstance(pred, torch.Tensor) and isinstance(target, torch.Tensor):
         pred = pred.detach().cpu().numpy()
         target = target.detach().cpu().numpy()
@@ -63,6 +64,7 @@ def average_performance(pred, target, thr=None, k=None):
         tp.sum(axis=0) + fp.sum(axis=0), eps)
     recall_class = tp.sum(axis=0) / np.maximum(
         tp.sum(axis=0) + fn.sum(axis=0), eps)
+
     CP = precision_class.mean() * 100.0
     CR = recall_class.mean() * 100.0
     CF1 = 2 * CP * CR / np.maximum(CP + CR, eps)

@@ -59,6 +59,7 @@ class VOC(MultiLabelDataset):
             gt_label[labels_difficult] = -1
             gt_label[labels] = 1
 
+
             info = dict(
                 img_prefix=self.data_prefix,
                 img_info=dict(filename=filename),
