@@ -378,10 +378,10 @@ class T40ResNet(nn.Module):
         layers = []
         layers.append(block(self.inplanes, planes, stride, downsample, self.groups,
                             self.base_width, previous_dilation, norm_layer,
-                            # is_quantize=is_quantize, bita=bita, bitw=bitw, 
-                            # clip_max_value=clip_max_value, 
-                            # weight_factor=weight_factor,
-                            # target_device=target_device,
+                            is_quantize=is_quantize, bita=bita, bitw=bitw, 
+                            clip_max_value=clip_max_value, 
+                            weight_factor=weight_factor,
+                            target_device=target_device,
                             ))
         self.inplanes = planes * block.expansion
         for _ in range(1, blocks):
