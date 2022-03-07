@@ -187,7 +187,7 @@ def main():
     logger.info(f'Current dataset -> {data2}')
     data2_dict = update_info_v3(stat_info, data2)
 
-    data3 = '/data/workspace_jack/vehicle_attribute_dataset/test/benchmark_v1'
+    data3 = '/data/workspace_jack/vehicle_attribute_dataset/source/Test_Dataset/merge'
     logger.info(f'Current dataset -> {data3}')
     data3_dict = update_info_v3(stat_info, data3) 
 

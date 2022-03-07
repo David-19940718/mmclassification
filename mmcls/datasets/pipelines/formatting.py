@@ -19,6 +19,10 @@ def to_tensor(data):
         return data
     elif isinstance(data, np.ndarray):
         return torch.from_numpy(data)
+    elif isinstance(data, list):
+        for i, d in enumerate(data):
+            data[i] = torch.from_numpy(d)
+        return data
     elif isinstance(data, Sequence) and not mmcv.is_str(data):
         return torch.tensor(data)
     elif isinstance(data, int):

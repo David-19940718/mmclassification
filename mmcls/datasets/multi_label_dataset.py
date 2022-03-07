@@ -13,16 +13,8 @@ class Multi_Label_Dataset(MultiLabelDataset):
         'bus',
         'car',
         'suv',
-        'truck',
-        'van',
         'black',
         'blue',
-        'coffee',
-        'gray',
-        'green',
-        'orange',
-        'red',
-        'white',
         'yellow',
     )
 

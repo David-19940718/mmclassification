@@ -83,7 +83,7 @@ def create_symlink(stat_info, total_list, save_path):
 
 
 def main():
-    save_path = '/home/jack/Projects/openmmlab/mmclassification/data/0302_total_multi_label_dataset'
+    save_path = '/home/jack/Projects/openmmlab/mmclassification/data/debug_black_blue_yellow_bus_car_suv'
     json_path = os.path.join(save_path, 'meta/stat_info.json')
     stat_info = load_json(json_path)
     total_list = list(stat_info['TOTAL_INFO'].keys())
