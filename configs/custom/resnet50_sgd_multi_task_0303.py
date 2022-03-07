@@ -20,31 +20,32 @@ test_pipeline = [
     dict(type='Collect', keys=['img'])
 ]
 data = dict(
-    samples_per_gpu=16,
+    samples_per_gpu=8,
     workers_per_gpu=2,
     train=dict(
         type=dataset_type,
-        data_prefix='data/0302_total_multi_label_dataset',
-        ann_file='data/0302_total_multi_label_dataset/meta/train.txt',
+        data_prefix='data/debug_black_blue_yellow_bus_car_suv',
+        ann_file='data/debug_black_blue_yellow_bus_car_suv/meta/train.txt',
         pipeline=train_pipeline),
     val=dict(
         type=dataset_type,
-        data_prefix='data/0302_total_multi_label_dataset',
-        ann_file='data/0302_total_multi_label_dataset/meta/val.txt',
+        data_prefix='data/debug_black_blue_yellow_bus_car_suv',
+        ann_file='data/debug_black_blue_yellow_bus_car_suv/meta/val.txt',
         pipeline=test_pipeline),
     test=dict(
         type=dataset_type,
-        data_prefix='data/0302_total_multi_label_dataset',
-        ann_file='data/0302_total_multi_label_dataset/meta/val.txt',
+        data_prefix='data/debug_black_blue_yellow_bus_car_suv',
+        ann_file='data/debug_black_blue_yellow_bus_car_suv/meta/val.txt',
         pipeline=test_pipeline))
 evaluation = dict(
-    interval=5, 
+    interval=1, 
     metric=['mAP', 'CP', 'OP', 'CR', 'OR', 'CF1', 'OF1'],
     save_best='mAP',
+    metric_options=dict(num_tasks=2, thr=0.5)
 )
 
 # training settings
-log_config = dict(interval=50, hooks=[dict(type='TextLoggerHook')])
+log_config = dict(interval=5, hooks=[dict(type='TextLoggerHook')])
 dist_params = dict(backend='nccl')
 log_level = 'INFO'
 load_from = None
@@ -52,7 +53,7 @@ resume_from = None
 workflow = [('train', 1)]
 
 # checkpoint saving
-checkpoint_config = dict(interval=10,)
+checkpoint_config = dict(interval=1,)
 
 # model settings
 model = dict(
@@ -72,7 +73,7 @@ model = dict(
     neck=dict(type='GlobalAveragePooling'),
     head=dict(
         type='MultiTaskClsHead',
-        num_classes=[9, 5],
+        num_tasks=[3, 3],
         in_channels=2048,
         loss=dict(
             type='CrossEntropyLoss', 
@@ -91,4 +92,4 @@ optimizer = dict(
         custom_keys=dict({'.backbone.classifier': dict(lr_mult=10)})))
 optimizer_config = dict(grad_clip=None)
 lr_config = dict(policy='step', step=[20, 50], gamma=0.1)
-runner = dict(type='EpochBasedRunner', max_epochs=100)
+runner = dict(type='EpochBasedRunner', max_epochs=3)

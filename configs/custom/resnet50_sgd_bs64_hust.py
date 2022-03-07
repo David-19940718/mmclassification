@@ -66,8 +66,8 @@ test_pipeline = [
     dict(type='Collect', keys=['img'])
 ]
 data = dict(
-    samples_per_gpu=64,
-    workers_per_gpu=2,
+    samples_per_gpu=16,
+    workers_per_gpu=1,
     train=dict(
         type=dataset_type,
         data_prefix='/home/jack/Projects/openmmlab/mmclassification/data/HUST_Vehicle_Color/train',
