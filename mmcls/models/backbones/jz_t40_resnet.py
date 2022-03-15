@@ -2,7 +2,6 @@ import torch.nn as nn
 from ..builder import BACKBONES
 from ingenic_magik_trainingkit.QuantizationTrainingPlugin.python import ops
 
-
 '''Recommonded settings
 IS_QUANTIZE = 1
 BITW = 4
@@ -142,7 +141,7 @@ class BasicBlock(nn.Module):
                 ):
         super(BasicBlock, self).__init__()
         if norm_layer is None:
-            norm_layer = nn.BatchNorm2d
+            norm_layer = ops.batchNorm2d
         if groups != 1 or base_width != 64:
             raise ValueError('BasicBlock only supports groups=1 and base_width=64')
         if dilation > 1:
@@ -198,7 +197,7 @@ class Bottleneck(nn.Module):
                 ):
         super(Bottleneck, self).__init__()
         if norm_layer is None:
-            norm_layer = nn.BatchNorm2d
+            norm_layer = ops.batchNorm2d
         width = int(planes * (base_width / 64.)) * groups
         # Both self.conv2 and self.downsample layers downsample the input when stride != 1
         self.conv1 = conv1x1(

@@ -10,6 +10,15 @@ NECKS = MODELS
 HEADS = MODELS
 LOSSES = MODELS
 CLASSIFIERS = MODELS
+# distill
+ALGORITHMS = MODELS
+MUTABLES = MODELS
+DISTILLERS = MODELS
+OPS = MODELS
+PRUNERS = MODELS
+QUANTIZERS = MODELS
+ARCHITECTURES = MODELS
+MUTATORS = MODELS
 
 ATTENTION = Registry('attention', parent=MMCV_ATTENTION)
 
@@ -36,3 +45,39 @@ def build_loss(cfg):
 
 def build_classifier(cfg):
     return CLASSIFIERS.build(cfg)
+
+# distill
+def build_algorithm(cfg):
+    """Build compressor."""
+    return ALGORITHMS.build(cfg)
+
+
+def build_architecture(cfg):
+    """Build architecture."""
+    return ARCHITECTURES.build(cfg)
+
+
+def build_mutator(cfg):
+    """Build mutator."""
+    return MUTATORS.build(cfg)
+
+
+def build_distiller(cfg):
+    """Build distiller."""
+    return DISTILLERS.build(cfg)
+
+
+def build_pruner(cfg):
+    """Build pruner."""
+    return PRUNERS.build(cfg)
+
+
+def build_mutable(cfg):
+    """Build mutable."""
+    return MUTABLES.build(cfg)
+
+
+def build_op(cfg):
+    """Build op."""
+    return OPS.build(cfg)
+

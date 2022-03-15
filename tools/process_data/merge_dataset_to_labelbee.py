@@ -120,11 +120,11 @@ def merge_v2():
             000001.jpg.json
     """
     CLASSES = [
-        ['bus', 'car', 'suv', 'truck', 'van'],
-        ['black', 'blue', 'coffee', 'gray', 'green', 'orange', 'red', 'white', 'yellow']
+        ['bus'],
+        ['black', 'blue', 'coffee', 'green', 'orange', 'red', 'white', 'yellow']
     ]
-    root = '/data/workspace_jack/vehicle_attribute_dataset/custom'
-    save = '/data/workspace_jack/vehicle_attribute_dataset/test/benchmark_v1'
+    root = '/data/workspace_jack/vehicle_attribute_dataset/source/Bus0308'
+    save = '/data/workspace_jack/vehicle_attribute_dataset/source/Bus220308'
     mkdir(save, is_remove=False)
 
     for c in CLASSES[1]:

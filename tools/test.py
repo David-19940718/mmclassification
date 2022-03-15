@@ -41,6 +41,8 @@ def parse_args():
         'above. Defaults to output all.',
         metavar='')
     parser.add_argument(
+        '--aug-test', action='store_true', help='Use Flip and Multi scale aug')
+    parser.add_argument(
         '--metrics',
         type=str,
         nargs='+',

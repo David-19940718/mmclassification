@@ -7,7 +7,7 @@ from .multi_label_head import MultiLabelClsHead
 from .multi_label_linear_head import MultiLabelLinearClsHead
 from .stacked_head import StackedLinearClsHead
 from .vision_transformer_head import VisionTransformerClsHead
-from .multi_task_linear_head import MultiTaskClsHead
+from .multi_task_cls_head import MultiTaskClsHead
 from .jz_t40_multi_label_linear_head import T40MultiLabelLinearClsHead
 
 __all__ = [

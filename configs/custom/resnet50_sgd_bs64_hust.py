@@ -3,7 +3,7 @@ model = dict(
     type='ImageClassifier',
     backbone=dict(
         type='ResNet',
-        depth=50,
+        depth=18,
         num_stages=4,
         out_indices=(3, ),
         style='pytorch'),
@@ -11,7 +11,7 @@ model = dict(
     head=dict(
         type='LinearClsHead',
         num_classes=8,
-        in_channels=2048,
+        in_channels=512,
         loss=dict(type='CrossEntropyLoss', loss_weight=1.0),
         topk=(1, 5),
     ))
@@ -19,7 +19,7 @@ model = dict(
 
 # ---------- Training Setting ---------- #
 # checkpoint saving
-checkpoint_config = dict(interval=1)
+checkpoint_config = dict(interval=10)
 # yapf:disable
 log_config = dict(
     interval=100,

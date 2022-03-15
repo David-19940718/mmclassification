@@ -7,10 +7,11 @@ from .helpers import is_tracing, to_2tuple, to_3tuple, to_4tuple, to_ntuple
 from .inverted_residual import InvertedResidual
 from .make_divisible import make_divisible
 from .se_layer import SELayer
+from .misc import add_prefix
 
 __all__ = [
     'channel_shuffle', 'make_divisible', 'InvertedResidual', 'SELayer',
     'to_ntuple', 'to_2tuple', 'to_3tuple', 'to_4tuple', 'PatchEmbed',
     'PatchMerging', 'HybridEmbed', 'Augments', 'ShiftWindowMSA', 'is_tracing',
-    'MultiheadAttention'
+    'MultiheadAttention', 'add_prefix'
 ]

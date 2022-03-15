@@ -72,11 +72,11 @@ def divide_v1():
 def divide_v2():
 
     CLASSES = {
-        'types': ['car', 'suv', 'truck', 'van'],
+        'types': ['bus', 'car', 'suv', 'truck', 'van'],
         'colors': ['black', 'blue', 'coffee', 'gray', 'green', 'orange', 'red', 'white', 'yellow']
     }
-    root_path = '/data/workspace_jack/vehicle_attribute_dataset/source/Hyper/hyper'
-    save_path = '/data/workspace_jack/vehicle_attribute_dataset/source/Hyper/uncheck_hyper'
+    root_path = '/home/jack/Projects/openmmlab/mmclassification/work_dirs/eval/convnext_xlarge_adamw_pretrain_multi_label_0309/errors'
+    save_path = '/home/jack/Projects/openmmlab/mmclassification/work_dirs/eval/convnext_xlarge_adamw_pretrain_multi_label_0309/errors-check'
     mkdir(save_path, is_remove=True)
     for filename in tqdm(os.listdir(root_path)):
         if ".json" not in filename: continue    

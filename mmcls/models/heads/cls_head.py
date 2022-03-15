@@ -108,9 +108,33 @@ class ClsHead(BaseHead):
         else:
             return pred
 
+    def aug_test(self, cls_scores, softmax=True, post_process=True):
+        """Inference with augmentation
+        Args:
+            cls_scores
+            softmax
+            post_process (bool)
+        Returns:
+            Tensor | list: the inference results.
+        """
+        aug_pred = []
+        for cls_score in cls_scores:
+            pred = self.simple_test(
+                cls_score, softmax=softmax, post_process=False
+            )
+            aug_pred.append(pred)
+        aug_pred = torch.stack(aug_pred).mean(dim=0)
+
+        if post_process:
+            return self.post_process(aug_pred)
+        else:
+            return aug_pred 
+
     def post_process(self, pred):
         on_trace = is_tracing()
         if torch.onnx.is_in_onnx_export() or on_trace:
             return pred
         pred = list(pred.detach().cpu().numpy())
         return pred
+
+

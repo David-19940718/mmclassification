@@ -187,27 +187,24 @@ def main():
     logger.info(f'Current dataset -> {data2}')
     data2_dict = update_info_v3(stat_info, data2)
 
-    data3 = '/data/workspace_jack/vehicle_attribute_dataset/source/Test_Dataset/merge'
+    data3 = '/data/workspace_jack/vehicle_attribute_dataset/source/MiniCars220308'
     logger.info(f'Current dataset -> {data3}')
-    data3_dict = update_info_v3(stat_info, data3) 
+    data3_dict = update_info_v3(stat_info, data3)
 
-    # data2 = '/data/workspace_jack/vehicle_attribute_dataset/source/PKU_VD_Brand_Color/datasets/0208_vehicle_attr_dataset'
-    # logger.info(f'Current dataset -> {data2}')
-    # data2_dict = update_info_v1(stat_info, data2)
+    data4 = '/data/workspace_jack/vehicle_attribute_dataset/source/Bus220308'
+    logger.info(f'Current dataset -> {data4}')
+    data4_dict = update_info_v3(stat_info, data4)
 
-    # data3 = '/data/workspace_jack/vehicle_attribute_dataset/source/StandfordCars/standford_2022-02-23'
-    # logger.info(f'Current dataset -> {data3}')
-    # data3_dict = update_info_v2(stat_info, data3)
-    
     # Merge datasets
     stat_info['TOTAL_INFO'] = merge_dicts(
         data1_dict, 
         data2_dict,
-        data3_dict,
+        # data3_dict,
+        data4_dict,
     )
 
     # Saving results
-    save_path = '/home/jack/Projects/openmmlab/mmclassification/data/0302_total_multi_label_dataset/meta'
+    save_path = '/home/jack/Projects/openmmlab/mmclassification/data/0310_train_standford_compcars_bus_test_benchmarkv1/meta'
     os.makedirs(save_path, exist_ok=True)
     save_json(stat_info, os.path.join(save_path, 'stat_info.json'))
 

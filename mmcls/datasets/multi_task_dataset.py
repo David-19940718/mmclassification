@@ -9,20 +9,11 @@ from .multi_task import MultiTaskDataset
 
 @DATASETS.register_module()
 class Multi_Task_Dataset(MultiTaskDataset):
+    ATTRIBUTES = ['types', 'colors']
     CLASSES = [
-        [
-        'black',
-        'blue',
-        'yellow',
-        ],
-        [
-        'bus',
-        'car',
-        'suv',
-        ],
+        ['bus', 'car', 'suv', 'truck', 'van'],
+        ['black', 'blue', 'coffee', 'gray', 'green', 'orange', 'red', 'white', 'yellow']
     ]
-    ATTRIBUTES = ['colors', 'types']
-
 
     def __init__(self, **kwargs):
         super(Multi_Task_Dataset, self).__init__(**kwargs)

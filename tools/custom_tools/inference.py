@@ -38,8 +38,8 @@ def inference_multi_label_model(model, img, CLASSES, mode='eval'):
 
         scores = model(return_loss=False, **data)
 
-        # 按属性输出
         topk_pred_score, topk_pred_index, topk_pred_class, cnt = [], [], [], 0
+        
         for c in range(len(CLASSES)):
             score = scores[0][cnt: cnt+len(CLASSES[c])]
             pred_score = np.max(score)

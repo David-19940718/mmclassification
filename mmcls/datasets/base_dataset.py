@@ -14,7 +14,6 @@ from .pipelines import Compose
 
 class BaseDataset(Dataset, metaclass=ABCMeta):
     """Base dataset.
-
     Args:
         data_prefix (str): the prefix of data path
         pipeline (list): a list of dict, where each element represents
@@ -48,7 +47,6 @@ class BaseDataset(Dataset, metaclass=ABCMeta):
     @property
     def class_to_idx(self):
         """Map mapping class name to class index.
-
         Returns:
             dict: mapping from class name to class index.
         """
@@ -57,9 +55,8 @@ class BaseDataset(Dataset, metaclass=ABCMeta):
 
     def get_gt_labels(self):
         """Get all ground-truth labels (categories).
-
         Returns:
-            list[int]: categories for all images.
+            np.ndarray: categories for all images.
         """
 
         gt_labels = np.array([data['gt_label'] for data in self.data_infos])
@@ -67,10 +64,8 @@ class BaseDataset(Dataset, metaclass=ABCMeta):
 
     def get_cat_ids(self, idx: int) -> List[int]:
         """Get category id by index.
-
         Args:
             idx (int): Index of data.
-
         Returns:
             cat_ids (List[int]): Image category of specified index.
         """
@@ -90,14 +85,12 @@ class BaseDataset(Dataset, metaclass=ABCMeta):
     @classmethod
     def get_classes(cls, classes=None):
         """Get class names of current dataset.
-
         Args:
             classes (Sequence[str] | str | None): If classes is None, use
                 default CLASSES defined by builtin dataset. If classes is a
                 string, take it as a file name. The file contains the name of
                 classes where each line contains one class name. If classes is
                 a tuple or list, override the CLASSES defined by the dataset.
-
         Returns:
             tuple[str] or list[str]: Names of categories of the dataset.
         """
@@ -118,9 +111,9 @@ class BaseDataset(Dataset, metaclass=ABCMeta):
                  results,
                  metric='accuracy',
                  metric_options=None,
+                 indices=None,
                  logger=None):
         """Evaluate the dataset.
-
         Args:
             results (list): Testing results of the dataset.
             metric (str | list[str]): Metrics to be evaluated.
@@ -128,6 +121,8 @@ class BaseDataset(Dataset, metaclass=ABCMeta):
             metric_options (dict, optional): Options for calculating metrics.
                 Allowed keys are 'topk', 'thrs' and 'average_mode'.
                 Defaults to None.
+            indices (list, optional): The indices of samples corresponding to
+                the results. Defaults to None.
             logger (logging.Logger | str, optional): Logger used for printing
                 related information during evaluation. Defaults to None.
         Returns:
@@ -145,6 +140,8 @@ class BaseDataset(Dataset, metaclass=ABCMeta):
         eval_results = {}
         results = np.vstack(results)
         gt_labels = self.get_gt_labels()
+        if indices is not None:
+            gt_labels = gt_labels[indices]
         num_imgs = len(results)
         assert len(gt_labels) == num_imgs, 'dataset testing results should '\
             'be of the same length as gt_labels.'

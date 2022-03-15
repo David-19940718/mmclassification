@@ -77,8 +77,9 @@ def pytorch2onnx(model,
     # replace original forward function
     origin_forward = model.forward
     model.forward = partial(model.forward, img_metas={}, return_loss=False)
-    register_extra_symbolics(opset_version)
 
+    # register_extra_symbolics(opset_version)
+    
     # support dynamic shape export
     if dynamic_export:
         dynamic_axes = {
@@ -189,7 +190,7 @@ def parse_args():
         '--shape',
         type=int,
         nargs='+',
-        default=[112, 112],
+        default=[224, 224],
         help='input image size')
     parser.add_argument(
         '--dynamic-export',

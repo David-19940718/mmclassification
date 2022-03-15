@@ -131,9 +131,10 @@ def move_error(src, dst):
     pass
 
 def write_info_to_pth():
-    pth_path = '/home/jack/Projects/openmmlab/mmclassification/work_dirs/train/resnet50_sgd_multi_label_0227/best_mAP_epoch_25.pth'
+    pth_path = '/home/jack/Projects/openmmlab/mmclassification/work_dirs/train/benchmark_v1/resnet50_pretrain_convnext_tricks_mixup_adamw_multi_class_220314/best_mAP_epoch_17.pth'
     checkpoint = torch.load(pth_path)
     checkpoint['meta']['CLASSES'] = (
+        'bus',
         'car',
         'suv',
         'truck',

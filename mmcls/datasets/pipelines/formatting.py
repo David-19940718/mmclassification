@@ -20,6 +20,7 @@ def to_tensor(data):
     elif isinstance(data, np.ndarray):
         return torch.from_numpy(data)
     elif isinstance(data, list):
+        # for multi-task
         for i, d in enumerate(data):
             data[i] = torch.from_numpy(d)
         return data

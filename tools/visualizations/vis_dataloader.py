@@ -47,7 +47,7 @@ def run_datatloader(cfg):
             gt = gt_label[batch_i]
             ori_filename = img_meta[batch_i]['ori_filename']
 
-            class_name = HUST_Vehicle_Color_Dataset.CLASSES[gt]
+            class_name = QingHai_Vehicle_Type.CLASSES[gt]
             mean_value = np.array(cfg.img_norm_cfg['mean'])
             std_value = np.array(cfg.img_norm_cfg['std'])
             img_hwc = np.transpose(img.numpy(), [1, 2, 0])
@@ -67,13 +67,14 @@ if __name__ == '__main__':
     IMAGE_SHOW = False
    
     # replace your own custon Dataset
-    from mmcls.datasets import HUST_Vehicle_Color_Dataset
-    cfg = Config.fromfile('/home/jack/Projects/openmmlab/mmclassification/configs/_base_/datasets/hust_vehicle_color.py')
+    from mmcls.datasets import QingHai_Vehicle_Type
+    path = '/home/jack/Projects/openmmlab/mmclassification/configs/custom/qinghai_contest/resnet18_pretrain_convnext_tricks_mixup_adamw_multi_class_220313.py'
+    cfg = Config.fromfile(path)
 
     # modify hyper parameters
-    cfg.gpu_ids = 1  # gpu device index
+    cfg.gpu_ids = 7  # gpu device index
     cfg.seed = init_random_seed(None)  # initialize random seed
     cfg.mode = 'train'  # 'train'/'val'/'test'
-    cfg.work_dirs = f'/home/jack/Projects/openmmlab/mmclassification/work_dirs/vis/hust_vehicle_color/{cfg.mode}'  # save dir
+    cfg.work_dirs = f"/home/jack/Projects/openmmlab/mmclassification/work_dirs/vis/qinghai_vehicle_type/{cfg.mode}"+"_dataloader"  # save dir
 
     run_datatloader(cfg)

@@ -46,7 +46,7 @@ data = dict(
         ann_file='data/VOCdevkit/VOC2007/ImageSets/Main/test.txt',
         pipeline=test_pipeline))
 evaluation = dict(
-    interval=5, 
+    interval=1, 
     metric=['mAP', 'CP', 'OP', 'CR', 'OR', 'CF1', 'OF1'],
     save_best='mAP',
 )
@@ -55,12 +55,12 @@ evaluation = dict(
 log_config = dict(interval=20, hooks=[dict(type='TextLoggerHook')])
 dist_params = dict(backend='nccl')
 log_level = 'INFO'
-load_from = '/home/jack/Projects/openmmlab/mmclassification/work_dirs/train/jz_t40_resnet_multi_lable/best_mAP_epoch_280.pth'
+load_from = '/home/jack/Projects/openmmlab/mmclassification/work_dirs/train/jz_t40_resnet_multi_lable_8bit/best_mAP_epoch_280.pth'
 resume_from = None
 workflow = [('train', 1)]
 
 # checkpoint saving
-checkpoint_config = dict(interval=5,)
+checkpoint_config = dict(interval=1,)
 
 # junzhen settings
 '''
@@ -76,7 +76,7 @@ num_classes = 20
 optimizer_type = "SGD"
 
 is_quantize = True
-bitw = 8
+bitw = 4
 if bitw==8:
     bita = 8
     weight_factor = 3.0
@@ -149,4 +149,4 @@ optimizer_config = dict(grad_clip=None)
 
 # learning policy
 lr_config = dict(policy='step', step=[90, 180, 270])
-runner = dict(type='EpochBasedRunner', max_epochs=300)
+runner = dict(type='EpochBasedRunner', max_epochs=1)
